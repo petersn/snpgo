@@ -1,0 +1,50 @@
+// Feature extraction.
+
+#ifndef _SNPGO_FEATURE_EXTRACTION_H
+#define _SNPGO_FEATURE_EXTRACTION_H
+
+#include <list>
+#include "go_utils.h"
+
+enum FeatureKind {
+	FEAT_ONES_PLANE,
+	FEAT_EMPTY_LOCATIONS_PLANE,
+	FEAT_P1_STONES,
+	FEAT_P2_STONES,
+	FEAT_LIBERTIES1,
+	FEAT_LIBERTIES2,
+	FEAT_LIBERTIES3,
+	FEAT_LIBERTIES4,
+	FEAT_LIBERTIES5,
+	FEAT_LIBERTIES6,
+	FEAT_LIBERTIES7,
+	FEAT_LIBERTIES8PLUS,
+	FEAT_HISTORY1,
+	FEAT_HISTORY2,
+	FEAT_HISTORY3,
+	FEAT_HISTORY4,
+	FEAT_HISTORY5,
+	FEAT_HISTORY6,
+	FEAT_HISTORY7,
+	FEAT_HISTORY8,
+	FEAT_P1_PLAY_CAUSES_CAPTURE1,
+	FEAT_P1_PLAY_CAUSES_CAPTURE2PLUS,
+	FEAT_P2_PLAY_CAUSES_CAPTURE1,
+	FEAT_P2_PLAY_CAUSES_CAPTURE2PLUS,
+	FEATURE_COUNT,
+};
+
+constexpr int MAX_LIBERTIES_FEATURE = 8;
+constexpr int MAX_CAPTURES_FEATURE = 2;
+constexpr int TOTAL_FEATURES = FEATURE_COUNT * BOARD_SIZE * BOARD_SIZE;
+
+struct FeatureExtractor {
+	constexpr static int AGE_LAYERS = 8;
+	std::list<Coord> move_history;
+
+	void add_move_to_history(Coord location);
+	void fill_features(uint8_t* feature_buffer, GoBoard& board, Player perspective_player);
+};
+
+#endif
+

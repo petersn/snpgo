@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#define BOARD_SIZE 19
+constexpr int BOARD_SIZE = 19;
 
 typedef uint8_t Cell;
 typedef std::pair<int, int> Coord;

@@ -1,8 +1,12 @@
 
-CXXFLAGS=-std=c++17 -g3 -O3 -Wall -Wextra -fPIC 
+CXXFLAGS=-std=c++17 -g3 -O3 -Wall -Wextra -fPIC
 LIBS=-lboost_iostreams -lboost_filesystem -lboost_system
 
-all: libfastgo.so sgf_to_chunks scan_directory
+#all: feature_extraction.o
+
+all: sgf_to_chunks
+
+#all: libfastgo.so sgf_to_chunks scan_directory
 
 libfastgo.so: sgf_to_chunks.o go_utils.o Makefile
 	$(CXX) $(CXXFLAGS) -shared -Wl,-soname,$@ -o $@ sgf_to_chunks.o go_utils.o $(LIBS)
